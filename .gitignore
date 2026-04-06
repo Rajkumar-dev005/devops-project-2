@@ -5,3 +5,4 @@ node_modules/
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
+kubectl

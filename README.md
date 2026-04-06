@@ -1,91 +1,45 @@
-DevOps Practice Project – Dist Directory
+# DevOps Project 2 - Trendify Application Deployment
 
-This repository contains the production-ready build files (dist folder) for DevOps practice and deployment exercises.
+## Application
+Trendify - A React-based fashion e-commerce application deployed to production using Docker, Jenkins CI/CD, and Kubernetes on AWS EKS.
 
-It is intentionally structured to help learners focus on CI/CD pipelines, hosting, containerization, and infrastructure setup rather than application development.
+## Repository
+Source: https://github.com/Vennilavanguvi/Trend.git
 
-📁 What This Repository Contains
+## Infrastructure (Terraform)
+- AWS VPC with public subnet
+- Internet Gateway and Route Table
+- Security Group with ports 22, 80, 8080, 3000
+- IAM Role with AdministratorAccess
+- EC2 t3.small instance (Jenkins server)
 
-dist/ – Compiled and production-ready static files
+## Docker Setup
+- Base Image: nginx:alpine
+- Custom nginx.conf serving app on port 3000
+- .dockerignore to exclude unnecessary files
 
-HTML
+## DockerHub Repository
+- Image: rajdevops5/devops-project-2-trend
+- URL: https://hub.docker.com/r/rajdevops5/devops-project-2-trend
 
-CSS
+## Kubernetes (AWS EKS)
+- Cluster: project2-eks-cluster (ap-south-2)
+- Deployment: 2 replicas of trend container
+- Service: LoadBalancer type on port 80 to 3000
 
-JavaScript
+## Jenkins CI/CD Pipeline
+Declarative pipeline with 4 stages:
+1. Checkout - Pull code from GitHub
+2. Build Docker Image - Build and tag image
+3. Push to DockerHub - Push image with build number and latest tag
+4. Deploy to EKS - Update kubeconfig and apply k8s manifests
+- GitHub webhook triggers auto build on every commit
 
-Assets (images, fonts, etc.)
+## Monitoring
+- Uptime Kuma running on port 3001
+- Monitors Trendify app health every 60 seconds
 
-These files are ready to deploy to:
-
-Web servers (Nginx / Apache)
-
-Cloud platforms (AWS S3, Azure Blob, GCP Storage)
-
-Containerized environments (Docker + Nginx)
-
-Kubernetes clusters
-
-CI/CD pipeline demonstrations
-
-🎯 Purpose of This Repository
-
-This repository is designed for:
-
-DevOps beginners
-
-CI/CD practice
-
-Deployment pipeline testing
-
-Docker & Kubernetes deployment exercises
-
-Web server configuration practice
-
-Reverse proxy and load balancer setup
-
-The goal is to simulate real-world deployment scenarios using already built application files.
-
-❓ Why is there NO package.json?
-
-You may notice that this repository does not include:
-
-package.json
-
-node_modules
-
-Source code (src/)
-
-Build tools configuration
-
-✅ Reason:
-
-This repository only contains the final production build output (dist), not the development source code.
-
-In a typical project:
-
-Developers write source code.
-
-The project is built using tools like:
-
-Node.js
-
-Webpack
-
-Vite
-
-React (or other frameworks)
-
-A dist/ folder is generated.
-
-Only the production build is deployed to servers.
-
-This repository represents step 4 only.
-
-Since this is already the compiled output:
-
-No dependencies are required
-
-No build process is required
-
-No package.json is needed
+## EC2 Details
+- Jenkins: http://18.60.117.240:8080
+- App: http://18.60.117.240:3000
+- Monitoring: http://18.60.117.240:3001

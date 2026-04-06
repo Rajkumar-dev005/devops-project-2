@@ -43,3 +43,7 @@ Declarative pipeline with 4 stages:
 - Jenkins: http://18.60.117.240:8080
 - App: http://18.60.117.240:3000
 - Monitoring: http://18.60.117.240:3001
+
+## Kubernetes LoadBalancer Details
+- **LoadBalancer DNS:** a3965e065bfbb4640a6d769d7784cef8-1611477483.ap-south-2.elb.amazonaws.com
+- **LoadBalancer ARN:** arn:aws:elasticloadbalancing:ap-south-2:132831331682:loadbalancer/a3965e065bfbb4640a6d769d7784cef8
